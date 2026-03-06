@@ -1,16 +1,32 @@
-# React + Vite
+# ASCON-AEAD128 Interactive Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive educational tool to learn and explore the **ASCON-AEAD128** authenticated encryption algorithm (NIST SP 800-232).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📖 Theory Tab
+Step-by-step explanation of the full algorithm, written for complete beginners:
+- Internal state structure (320 bits, 5 words, rate vs capacity)
+- The permutation Ascon-p[r] — all 3 layers explained (Constant Addition, S-box, Linear Diffusion)
+- All 4 encryption phases with exact formulas
+- Optional features: Tag Truncation and Nonce Masking
 
-## React Compiler
+### 🔬 Cipher Explorer Tab
+Run a real ASCON-AEAD128 encryption and trace every single operation:
+- Input your own **Key**, **Nonce**, **Associated Data** and **Plaintext** (hex)
+- Step-by-step list of every state transformation, grouped by phase
+- For each step: full 320-bit state display with changed words highlighted in orange
+- **Drill into any permutation call** (p[8] or p[12]) — navigate round by round, sub-step by sub-step (Before → After Constant → After S-box → After Linear Diffusion)
+- Two presets: **Load Example** and **KAT Count=1** (verifiable against official NIST test vectors)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Usage
 
-## Expanding the ESLint configuration
+Open `ascon-explorer.jsx` as a React artifact in Claude.ai or paste it into any React sandbox (e.g. StackBlitz, CodeSandbox).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+No external dependencies — only React.
+
+## Notes
+
+- All crypto is implemented in JavaScript using **BigInt** (64-bit words, little-endian)
+- Results are correct and verifiable against the official KAT file:  
+  `https://github.com/ascon/ascon-c/blob/main/crypto_aead/asconaead128/LWC_AEAD_KAT_128_128.txt`

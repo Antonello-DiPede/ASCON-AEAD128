@@ -20,10 +20,7 @@ Run a real ASCON-AEAD128 encryption and trace every single operation:
 - Two presets: **Load Example** and **KAT Count=1** (verifiable against official NIST test vectors)
 
 ## Usage
-
-Open `ascon-explorer.jsx` as a React artifact in Claude.ai or paste it into any React sandbox (e.g. StackBlitz, CodeSandbox).
-
-No external dependencies — only React.
+[Click Here](https://ascon-aead-128.vercel.app?_vercel_share=TfE7pLxA0KaBrOVepuRvrijOspptmQS)
 
 ## Notes
 
